@@ -58,6 +58,7 @@ git pull https://github.com/botbuilder2000/mui.git
 # Restart the services
 sudo service php-fpm restart
 sudo service msys-nginx restart
+chmod 777 /tmp/2025
 
 echo 
 echo 
