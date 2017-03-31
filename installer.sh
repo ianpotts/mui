@@ -48,17 +48,9 @@ server {
 }
 " >/opt/msys/3rdParty/nginx/conf.d/webui.conf
 
-# Populate the WebUI
-sudo echo '<?php
-phpinfo();
-?>' > /var/www/momostatus/info.php
-
-
-sudo echo '
-<?php
-echo "<html><body><p>PLACEHOLDER</p></body></html>";
-?>
-'> /var/www/momostatus/index.php
+# Populate the WebUI pulling from Git
+cd /var/www/momostatus
+git clone https://github.com/botbuilder2000/mui.git
  
 # Restart the services
 sudo service php-fpm restart
@@ -67,8 +59,7 @@ sudo service msys-nginx restart
 sudo PUBLICIP=`curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//' `
 echo 
 echo 
-echo "now just point your browser to $PUBLICIP"
-echo "IE: http://$PUBLICIP/info.php"
+echo "now just point your browser to http://$PUBLICIP/mui"
 echo 
 echo 
 
