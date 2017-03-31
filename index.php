@@ -1,1 +1,4 @@
-<html><body><p>PLACEHOLDER</p></body></html>
+<?php
+include ('header.php');
+include ('footer.php');
+?>
