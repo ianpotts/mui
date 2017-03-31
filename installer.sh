@@ -52,6 +52,7 @@ server {
 cd /var/www/momostatus
 git clone https://github.com/botbuilder2000/mui.git
 
+PUBLICIP=`curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//' `
 echo "<?php
 header('Location: http://$PUBLICIP/mui');
 exit;
@@ -62,7 +63,6 @@ exit;
 sudo service php-fpm restart
 sudo service msys-nginx restart
 
-sudo PUBLICIP=`curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//' `
 echo 
 echo 
 echo "now just point your browser to http://$PUBLICIP/mui"
