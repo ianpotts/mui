@@ -1,6 +1,7 @@
 #!/bin/bash
 
-yum install php php-fpm -y
+sudo yum install php php-fpm -y
+sudo chkconfig --levels 235 php-fpm on
 
 sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php.ini
 sudo sed -i "s/user = apache/user = msysnginx/" /etc/php-fpm.d/www.conf
