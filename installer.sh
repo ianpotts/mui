@@ -51,6 +51,12 @@ server {
 # Populate the WebUI pulling from Git
 cd /var/www/momostatus
 git clone https://github.com/botbuilder2000/mui.git
+
+echo "<?php
+header('Location: http://$PUBLICIP/mui');
+exit;
+?>" > index.php
+
  
 # Restart the services
 sudo service php-fpm restart
