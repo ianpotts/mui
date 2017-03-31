@@ -50,13 +50,9 @@ server {
 
 # Populate the WebUI pulling from Git
 cd /var/www/momostatus
-git clone https://github.com/botbuilder2000/mui.git
-
-PUBLICIP=`curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//' `
-echo "<?php
-header('Location: http://$PUBLICIP/mui');
-exit;
-?>" > index.php
+git init
+# You should probably clone this to your own repo and will need to enter your credentials here 
+git pull https://github.com/botbuilder2000/mui.git
 
  
 # Restart the services
@@ -65,7 +61,7 @@ sudo service msys-nginx restart
 
 echo 
 echo 
-echo "now just point your browser to http://$PUBLICIP/mui"
+echo "now just point your browser to http://$PUBLICIP"
 echo 
 echo 
 
