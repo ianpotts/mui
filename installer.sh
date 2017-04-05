@@ -18,8 +18,9 @@ sudo chkconfig --levels 235 php-fpm on
 
 # Updae Configs
 sudo sed -i "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/" /etc/php.ini
-sudo sed -i "s/user = apache/user = msysnginx/" /etc/php-fpm.d/www.conf
-sudo sed -i "s/group = apache/group = msysnginx/" /etc/php-fpm.d/www.conf
+sudo sed -i "s/user = apache/user = ecuser/" /etc/php-fpm.d/www.conf
+sudo sed -i "s/group = apache/group = ecuser/" /etc/php-fpm.d/www.conf
+chown ecuser.ecuser /var/lib/php/session
 
 # Build the web service
 sudo mkdir -p /var/www/momostatus
