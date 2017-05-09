@@ -13,3 +13,12 @@ After you build the server and install and test Apache or Nginx, change director
 
 Once the initial install is done, the updater should just pull the current version of the UI from this repo.  The package includes the telemetry module that is intended to run on the Momentum nodes.  Copy that file (telemetry.sh) to /opt/msys/ecelerity/etc/conf/default then add a cron job to execue it every 5 minutes.  Alternately cp telem.ins to /tmp on each node then execute it and it will do the install for you.
 
+== EXTRAS ==
+Feel free to add your own skin with a custom CSS or your own favicon.  The deployment already accounts for that, you just need to crop in the files.  
+To add your own CSS place it in the /style dir as "skin.css".
+To add your own ICON place it in the /style dir  as "favicon.ico".
+
+   <link rel=\"stylesheet\" type=\"text/css\" href=\"style/skin.css\" />
+   <link href=\"style/favicon.ico\" rel=\"icon\" type=\"image/x-icon\" />
+   <link href=\"style/favicon.ico\" rel=\"shortcut icon\" />
+
