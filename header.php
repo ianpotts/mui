@@ -2,7 +2,8 @@
 session_start();
 $verified = $_SESSION['ver'];
 
-include ('env.ini');
+$mui_version = "0.3 detatched";
+
 echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"en\" lang=\"en\">
 <head>
@@ -10,7 +11,7 @@ echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3
     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
     <meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\" />
     <meta http-equiv=\"cache-control\" content=\"no-cache\" />
-    <link rel=\"stylesheet\" type=\"text/css\" href=\"style/styles.css\" />
+    <link rel=\"stylesheet\" type=\"text/css\" href=\"style/skin.css\" />
     <link href=\"style/favicon.ico\" rel=\"icon\" type=\"image/x-icon\" />
     <link href=\"style/favicon.ico\" rel=\"shortcut icon\" />
 </head>
@@ -21,18 +22,8 @@ echo "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3
       <br>Version $mui_version
     <hr>
   </p>
-  <p>
-   <hr>
-   <a href=\"index.php\">home</a> |
-   <a href=\"summary.php\">summary</a> |
-   <a href=\"nodes.php\">nodes</a> |
-   <a href=\"info.php\">info</a> |
-   <a href=\"login.php\">logout</a>
-   <hr>
-  </p>
-
 ";
-
+include ('toolbar.php');
 
 // If not logged in, request credentials
 

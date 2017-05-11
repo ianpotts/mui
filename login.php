@@ -12,6 +12,7 @@ echo "$key <br>";
 if (($uid == "admin") && ($key == "admin")){
   $_SESSION['ver'] = "true";
   echo "Allowing access for $uid <br>";
+  echo $_SESSION['ver'];
 }
 
 header('Location: index.php');
