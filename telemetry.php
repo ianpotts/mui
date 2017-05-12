@@ -27,6 +27,8 @@ $df = shell_exec('df -h');
 $mhost = gethostname();
 $lastupdate = date("Y-m-d H:m:s", time()); 
 
+echo "MUI telemetry running at $lastupdate \n";
+
 // Sanitize
 
 preg_match('/vendor_perl/',$momover,$matches);
