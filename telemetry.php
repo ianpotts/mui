@@ -32,7 +32,7 @@ $momover = shell_exec('echo "version" |/opt/msys/ecelerity/bin/ec_console');
 $msummary = shell_exec('echo "summary" |/opt/msys/ecelerity/bin/ec_console');
 $df = shell_exec('df -h');
 $mhost = gethostname();
-$lastupdate = date("Y-m-d H:m:s", time()); 
+$lastupdate = date("Y-m-d H:i:s", time()); 
 
 echo "MUI telemetry running at $lastupdate \n";
 
