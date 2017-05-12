@@ -1,0 +1,2 @@
+5 * * * * root php /opt/msys/ecelerity/etc/conf/default/scripts/telemetry.php >/dev/null 2>&1
+# executes the telemetry script every 5 minutes
