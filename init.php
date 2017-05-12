@@ -153,6 +153,10 @@ if ($validated == "false"){
   echo "<input type=button name=reload value=\"Try Again\" onClick=\"location.href = 'init.php';\">";
 } 
 else{
+	
+// write out the connect info to the right local files
+// create the connect.ini file
+
 $fcontent = '
 <?php 
 
@@ -166,6 +170,19 @@ $dbpass = "'.$dbpass.'"; # database password
 ';
   
 file_put_contents('./connect.ini', $fcontent);
+
+
+// update the telemetry.php file
+$path_to_file = './telemetry.php';
+$file_contents = file_get_contents($path_to_file);
+$file_contents = str_replace("dbhost = \"\"","dbhost = \"$dbhost\"",$file_contents);
+$file_contents = str_replace("dbport = \"\"","dbport = \"$dbport\"",$file_contents);
+$file_contents = str_replace("dbname = \"\"","dbname = \"$dbname\"",$file_contents);
+$file_contents = str_replace("dbuser = \"\"","dbuser = \"$dbuser\"",$file_contents);
+$file_contents = str_replace("dbpass = \"\"","dbpass = \"$dbpass\"",$file_contents);
+file_put_contents($path_to_file,$file_contents);
+
+// Create location for AD Reports	
 mkdir('./adreports');
 header('Location: index.php');
 
