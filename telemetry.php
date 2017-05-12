@@ -1,7 +1,7 @@
 <?php
 // Telemetry module
 // to be run on every node in the Momentum cluster 
-// collects data from the system and pushed to the WebUI
+// collects data from the system and pushes to the WebUI
 
 $dbhost = ""; # db Hostname 
 $dbport = ""; # db port
