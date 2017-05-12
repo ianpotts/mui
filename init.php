@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-include('connect.ini');
+include('connect.php');
 // Collect data for install 
 
 $dbhost1 = $_POST['dbhost'];
@@ -155,7 +155,7 @@ if ($validated == "false"){
 else{
 	
 // write out the connect info to the right local files
-// create the connect.ini file
+// create the connect.php file
 
 $fcontent = '
 <?php 
@@ -169,7 +169,7 @@ $dbpass = "'.$dbpass.'"; # database password
 ?>
 ';
   
-file_put_contents('./connect.ini', $fcontent);
+file_put_contents('./connect.php', $fcontent);
 
 
 // update the telemetry.php file
