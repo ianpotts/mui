@@ -182,7 +182,8 @@ $query = "insert into summary (
         Rejection_Rate,
         Rejection_Percentage,
         Last_Reset,
-        Uptime)
+        Uptime,
+        Nodename)
    VALUES (       
         $O_Concurrency,
         $I_Concurrency,
@@ -206,7 +207,8 @@ $query = "insert into summary (
         $Rejection_Rate,
         $Rejection_Percentage,
         $Last_Reset,
-        $Uptime)";
+        $Uptime,
+        '$mhost')";
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 
 //  echo "DB INSERT <br>\n";
