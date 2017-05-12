@@ -90,7 +90,7 @@ $query = 'CREATE TABLE summary (
 	DNS_AAAA_Queries int,
 	DNS_MX_Queries int,
 	Pending_DNS_Queries int,
-	Query_Rate float
+	Query_Rate float,
 	Delivered int,
 	Failed int,
 	Transient int,
