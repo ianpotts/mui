@@ -2,6 +2,13 @@
 // Telemetry module
 // to be run on every node in the Momentum cluster 
 // collects data from the system and pushed to the WebUI
+// THis script should first be generated from the WebUI 
+// installer in order to get the correct DB credentials.
+// Then, it can be copied into each Momentum node.  
+// Ideally, you will place it under /conf/default so it 
+// can be replicated to each node in the cluster automatically.
+// You should also add a cron job to run the script automatically.
+// a sample is found in the repo as mui-cron
 
 $dbhost = ""; # db Hostname 
 $dbport = ""; # db port
