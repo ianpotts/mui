@@ -3,11 +3,11 @@
 // to be run on every node in the Momentum cluster 
 // collects data from the system and pushed to the WebUI
 
-$dbhost = "mui.trymsys.net"; # db Hostname 
-$dbport = "5432"; # db port
-$dbname = "muidata"; # database name
-$dbuser = "muiuser"; # database username
-$dbpass = "#mu1u53r!"; # database password
+$dbhost = ""; # db Hostname 
+$dbport = ""; # db port
+$dbname = ""; # database name
+$dbuser = ""; # database username
+$dbpass = ""; # database password
 
 
 // ############# DO NOT CHANGE ANYTHING BELOW THIS LINE ######## //
