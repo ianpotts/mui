@@ -1,6 +1,6 @@
 <?php
 include ('header.php');
-include ('connect.ini');
+include ('connect.php');
 $n = $_GET['n'];
 if ($n == "") {$n="total";}
 
