@@ -11,10 +11,50 @@ if ($dbhost == ""){
 // Get the data!
 $dbconn = pg_connect("host=$dbhost dbname=$dbname user=$dbuser password=$dbpass")
     or die('<font color=red>Could not connect: </font>' . pg_last_error() );
+
+// If looking at TOTAL tab, get sum and average instead
+if ($n == "total"){
+  $query = "SELECT * from summary";
+  $result = pg_query($query) or die('Query failed: ' . pg_last_error());
+  $row = pg_fetch_all($result);
+  pg_free_result($result);
+
+  $sumArray = array();
+  foreach ($row as $k=>$subArray) {
+    foreach ($subArray as $id=>$value) {
+      $sumArray[$id]+=$value;
+    }
+  }
+$row[0]['o_concurrency'] = $sumArray['o_concurrency'];
+$row[0]['i_concurrency'] = $sumArray['i_concurrency'];
+$row[0]['active_domains'] = $sumArray['active_domains'];
+$row[0]['aqs'] = $sumArray['aqs'];
+$row[0]['dqs'] = $sumArray['dqs'];
+$row[0]['tqs'] = $sumArray['tqs'];
+$row[0]['dns_a_queries'] = $sumArray['dns_a_queries'];
+$row[0]['dns_aaaa_queries'] = $sumArray['dns_aaaa_queries'];
+$row[0]['dns_mx_queries'] = $sumArray['dns_mx_queries'];
+$row[0]['pending_dns_queries'] = $sumArray['pending_dns_queries'];
+$row[0]['delivered'] = $sumArray['delivered'];
+$row[0]['failed'] = $sumArray['failed'];
+$row[0]['transient'] = $sumArray['transient'];
+$row[0]['rejected'] = $sumArray['rejected'];
+$row[0]['received'] = $sumArray['received'];
+$row[0]['query_rate'] = $sumArray['query_rate'] / count($sumArray);
+$row[0]['delivery_rate'] = $sumArray['delivery_rate'] / count($sumArray);
+$row[0]['reception_rate'] = $sumArray['reception_rate'] / count($sumArray);
+$row[0]['rejection_rate'] = $sumArray['rejection_rate'] / count($sumArray);
+$row[0]['rejection_percentage'] = $sumArray['rejection_percentage'] / count($sumArray);
+$row[0]['dnsresolver'] = "Per Node";
+$row[0]['last_reset'] = $sumArray['last_reset'] / count($sumArray);;
+$row[0]['uptime'] = $sumArray['uptime'] / count($sumArray);;
+}
+else{
 $query = "SELECT * from summary WHERE Nodename='" . $n . "'";
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
 $row = pg_fetch_all($result);
 pg_free_result($result);
+}
 
 $query = "SELECT nodename from nodestatus";
 $result = pg_query($query) or die('Query failed: ' . pg_last_error());
@@ -74,18 +114,32 @@ echo "
 <tr><td>DNS AAAA Queries</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['dns_aaaa_queries'] . "</td></tr>
 <tr><td>DNS MX Queries</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['dns_mx_queries'] . "</td></tr>
 <tr><td>Pending DNS Queries</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['pending_dns_queries'] . "</td></tr>
-<tr><td>Query Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['query_rate'] . " queries/second</td></tr>
+<tr><td>Query Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['query_rate'] . " queries/second";
+if ($n == 'total'){echo " (average)";}
+echo "</td></tr>
 <tr><td>Delivered Messages</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['delivered'] . "</td></tr>
 <tr><td>Failed Messages</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['failed'] . "</td></tr>
 <tr><td>Transient Messages</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['transient'] . "</td></tr>
 <tr><td>Rejected Messages</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['rejected'] . "</td></tr>
 <tr><td>Received Messages</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['received'] . "</td></tr>
-<tr><td>Delivery Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['delivery_rate'] . " messages/second</td></tr>
-<tr><td>Reception Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['reception_rate'] . " messages/second</td></tr>
-<tr><td>Rejection Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['rejection_rate'] . " messages/second</td></tr>
-<tr><td>Rejection Percentage</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['rejection_percentage'] . " %</td></tr>
-<tr><td>Stats Last Reset</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['last_reset'] . " seconds</td></tr>
-<tr><td>Node Uptime</td><td> &nbsp;  &nbsp; </td><td>" . $row[0]['uptime'] ." seconds</td></tr>
+<tr><td>Delivery Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['delivery_rate'] . " messages/second";
+if ($n == 'total'){echo " (average)";}
+echo "</td></tr>
+<tr><td>Reception Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['reception_rate'] . " messages/second";
+if ($n == 'total'){echo " (average)";}
+echo "</td></tr>
+<tr><td>Rejection Rate</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['rejection_rate'] . " messages/second";
+if ($n == 'total'){echo " (average)";}
+echo "</td></tr>
+<tr><td>Rejection Percentage</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['rejection_percentage'] . " %";
+if ($n == 'total'){echo " (average)";}
+echo "</td></tr>
+<tr><td>Stats Last Reset</td><td> &nbsp;  &nbsp; </td><td> " . $row[0]['last_reset'] . " seconds";
+if ($n == 'total'){echo " (average)";}
+echo "</td></tr>
+<tr><td>Node Uptime</td><td> &nbsp;  &nbsp; </td><td>" . $row[0]['uptime'] ." seconds";
+if ($n == 'total'){echo " (average)";}
+echo "</td></tr>
 </table>
 </td>
 <td> &nbsp;  &nbsp; </td>
