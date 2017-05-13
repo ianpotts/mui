@@ -145,17 +145,32 @@ echo "</td></tr>
 <td> &nbsp;  &nbsp; </td>
 <td valign=top>
 <table>
+";
+
+if ($n == 'total'){
+  echo "<tr><th colspan=2>Nodes Reporting</th></tr>";
+  foreach ($nnames as $nn){
+    echo "<tr><td>". strtoupper($nn['nodename']) . "</a>&nbsp;</td></tr>";
+  }
+}
+else{
+echo "
 <tr><th colspan=2>Node Status </th></tr>
 <td>nodename</td><td> " . $ns[0]['nodename'] . "</td></tr>
 <tr><td>status </td><td> " . $ns[0]['status'] . "</td></tr>
 <tr><td>version </td><td> " . $ns[0]['version'] . "</td></tr>
 <tr><td colspan=2><pre>" . $ns[0]['volume'] . "</pre></td></tr>
 <tr><td>Last Update </td><td> " . $ns[0]['lastupdate'] . " PST</td></tr>
+";
+}
+
+echo "
 </table>
 
 </td>
 </tr>
 </table>";
+
 
 
 
