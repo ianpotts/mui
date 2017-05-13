@@ -36,7 +36,13 @@ $ns[0]['volume'] = preg_replace('/\\n/','<br>',$ns[0]['volume']);
 echo "
 <table border=1>
   <tr>
-  <td><a href='/summary.php?n=total'>TOTAL</a>&nbsp;</td>";
+  <td";
+
+ if ($n == 'total'){
+    echo " bgcolor=ltgreen ";
+  }
+
+echo "><a href='./summary.php?n=total'>TOTAL</a>&nbsp;</td>";
 foreach ($nnames as $nn){
   echo "<td";
   if ($n == $nn['nodename']){
