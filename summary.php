@@ -40,14 +40,22 @@ $row[0]['failed'] = $sumArray['failed'];
 $row[0]['transient'] = $sumArray['transient'];
 $row[0]['rejected'] = $sumArray['rejected'];
 $row[0]['received'] = $sumArray['received'];
-$row[0]['query_rate'] = $sumArray['query_rate'] / count($sumArray);
+$row[0]['query_rate'] = sumArray['query_rate'] / count($sumArray);
+$row[0]['query_rate'] = sprintf("%01.2f", $row[0]['query_rate']);
 $row[0]['delivery_rate'] = $sumArray['delivery_rate'] / count($sumArray);
+$row[0]['delivery_rate'] = sprintf("%01.2f", $row[0]['delivery_rate']);
 $row[0]['reception_rate'] = $sumArray['reception_rate'] / count($sumArray);
+$row[0]['reception_rate'] = sprintf("%01.2f", $row[0]['reception_rate']);
 $row[0]['rejection_rate'] = $sumArray['rejection_rate'] / count($sumArray);
+$row[0]['rejection_rate'] = sprintf("%01.2f", $row[0]['rejection_rate']);
 $row[0]['rejection_percentage'] = $sumArray['rejection_percentage'] / count($sumArray);
+$row[0]['rejection_percentage'] = sprintf("%01.2f", $row[0]['rejection_percentage']);
+
 $row[0]['dnsresolver'] = "Per Node";
 $row[0]['last_reset'] = $sumArray['last_reset'] / count($sumArray);;
+$row[0]['last_reset'] = sprintf("%01.2f", $row[0]['last_reset']);
 $row[0]['uptime'] = $sumArray['uptime'] / count($sumArray);;
+$row[0]['uptime'] = sprintf("%01.2f", $row[0]['uptime']);
 }
 else{
 $query = "SELECT * from summary WHERE Nodename='" . $n . "'";
